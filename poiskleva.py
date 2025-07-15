@@ -535,9 +535,11 @@ async def main():
     #app.add_handler(CommandHandler("stop", stop))
 
     print("Бот запущен...")
-    await app.initialize()
-    await app.start()
-    await app.updater.start_polling()
+    await app.run_polling()
+
+   # await app.initialize()
+   # await app.start()
+   # await app.updater.start_polling()
 
 # ✅ Вызов
 if __name__ == "__main__":
