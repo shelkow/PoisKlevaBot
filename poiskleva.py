@@ -518,9 +518,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Привет! Напиши /klev чтобы узнать прогноз клёва в Калуге 🎣")
 
 # 🛑 /stop
-async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🛑 Бот останавливается...")
-    os._exit(0)  # немедленный выход из процесса
+#async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
+#    await update.message.reply_text("🛑 Бот останавливается...")
+#    os._exit(0)  # немедленный выход из процесса
 # 👇 Запуск
 
 
