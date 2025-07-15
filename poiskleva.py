@@ -105,10 +105,8 @@ def get_kp_index():
 # 🔥 Рассчитываем индекс ультрафиолета в Калуге
 def get_uv_index(lat=54.51, lon=36.25):
     try:
-        tz = pytz.timezone("Europe/Moscow")
-        now = datetime.datetime.now(tz).replace(minute=0, second=0, microsecond=0)
-        now_iso = now.isoformat()
-
+        now_utc = datetime.datetime.utcnow().replace(minute=0, second=0, microsecond=0)
+        
         url = (
             f"https://api.open-meteo.com/v1/forecast?"
             f"latitude={lat}&longitude={lon}"
@@ -117,7 +115,7 @@ def get_uv_index(lat=54.51, lon=36.25):
         )
 
         response = requests.get(url)
-        response.raise_for_status()  # проверка HTTP ошибки
+        response.raise_for_status()
         data = response.json()
 
         times = data.get('hourly', {}).get('time', [])
@@ -126,12 +124,12 @@ def get_uv_index(lat=54.51, lon=36.25):
         if not times or not uvs:
             return None, "Данные по UV-индексу отсутствуют."
 
-        # ищем индекс текущего часа
-        if now_iso in times:
-            index = times.index(now_iso)
-            uv_now = uvs[index]
-        else:
-            uv_now = max(uvs)  # максимум за день
+        # Парсим времена в datetime объекты с UTC
+        times_dt = [datetime.datetime.fromisoformat(t.replace('Z', '+00:00')) for t in times]
+
+        # Ищем индекс ближайшего часа к now_utc
+        index = min(range(len(times_dt)), key=lambda i: abs(times_dt[i] - now_utc))
+        uv_now = uvs[index]
 
         if uv_now < 2:
             desc = "Низкий UV-индекс. Безопасно, но рыба может быть менее активна."
