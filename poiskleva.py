@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!pip install python-telegram-bot --quiet
+#!pip install python-telegram-bot 
 #!pip install ephem
 
 # @title PROGNOZZZ KLEVA
