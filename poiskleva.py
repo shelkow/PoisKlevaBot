@@ -540,5 +540,7 @@ async def main():
     await app.updater.start_polling()
 
 # ✅ Вызов
-await main()
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
 
