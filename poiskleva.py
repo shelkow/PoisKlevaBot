@@ -532,7 +532,7 @@ async def main():
     app.add_handler(CommandHandler("klev", klev))
     app.add_handler(CommandHandler("klev_zavtra", klev_zavtra))
     app.add_handler(CommandHandler("klev_poslezavtra", klev_poslezavtra))
-    app.add_handler(CommandHandler("stop", stop))
+    #app.add_handler(CommandHandler("stop", stop))
 
     print("Бот запущен...")
     await app.initialize()
