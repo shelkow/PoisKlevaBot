@@ -541,7 +541,9 @@ async def main():
    # await app.start()
    # await app.updater.start_polling()
 
+import asyncio
+
 if __name__ == "__main__":
-    import asyncio
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    asyncio.get_event_loop().create_task(main())
+    asyncio.get_event_loop().run_forever()
+
