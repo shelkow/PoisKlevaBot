@@ -17,10 +17,8 @@ from datetime import timedelta
 import datetime
 import asyncio
 import pytz
-
-# 🔐 Ключи
 import os
-
+# 🔐 Ключи
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 OWM_API_KEY = os.getenv('OWM_API_KEY')
 LOCATION = 'Kaluga,RU'
